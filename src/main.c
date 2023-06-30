@@ -8,5 +8,6 @@ int	main(int argc, char **argv)
 		err(ERR_ARGS);
 	init_rules(&rules, argv);
 	print_args(rules);
+	launcher(&rules);
 	return (0);
 }
