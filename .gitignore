@@ -30,6 +30,7 @@
 *.swp
 
 # Executables
+philo
 *.exe
 *.out
 *.app
