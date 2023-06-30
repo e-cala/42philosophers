@@ -24,7 +24,7 @@ void	init_rules(t_rules *rules, char **argv);
 void	err(char *str);
 
 /*		utils.c			*/
-int	print_args(t_rules rules);
+void	print_args(t_rules rules);
 int	ft_atoi(char *str);
 
 #endif

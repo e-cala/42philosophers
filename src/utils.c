@@ -1,6 +1,6 @@
 #include "../includes/philo.h"
 
-int	print_args(t_rules rules)
+void	print_args(t_rules rules)
 {
 	printf("argv[1] | number of philosophers:		%d\n", rules.num_philos);
 	printf("argv[2] | time to die		:		%d\n", rules.time_to_die);

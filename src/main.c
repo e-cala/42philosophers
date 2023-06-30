@@ -4,7 +4,7 @@ int	main(int argc, char **argv)
 {
 	t_rules	rules;
 
-	if (argc != 5)
+	if (argc != 5 && argc != 6)
 		err(ERR_ARGS);
 	init_rules(&rules, argv);
 	print_args(rules);
