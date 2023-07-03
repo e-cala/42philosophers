@@ -1,5 +1,10 @@
 #include "../includes/philo.h"
 
+static long long	time_diff(long long past, long long present)
+{
+	return (present - past);
+}
+
 long long	timestamp(void)
 {
 /*
@@ -12,4 +17,17 @@ long long	timestamp(void)
 
 	gettimeofday(&t, NULL);
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+void	smart_sleep(long long time, t_rules *rules)
+{
+	long long i;
+
+	i = timestamp();
+	while (!(rules->dead))
+	{
+		if (time_diff(i, timestamp()) >= time)
+			break ;
+		usleep(50);
+	}
 }
