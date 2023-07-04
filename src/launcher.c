@@ -95,7 +95,6 @@ int	launcher(t_rules *rules)
 
 	i = 0;
 	phi = rules->philosophers;
-	rules->first_timestamp = timestamp();
 	while (i < rules->num_philos)
 	{
 		if (pthread_create(&(phi[i].thread_id), NULL, p_thread, (void *) &(phi[i])))

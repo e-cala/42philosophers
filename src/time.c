@@ -5,14 +5,14 @@ long long	time_diff(long long past, long long present)
 	return (present - past);
 }
 
-long long	timestamp(void)
-{
 /*
  * tv_sec = time in seconds since the Unix epoch
  * tv_usec = Time in microseconds during the current second
  * To get the timestamp in MILLISECONDS we need to multiply seconds by 1000 
  * and divide microseconds by 1000
  * */
+long long	timestamp(void)
+{
 	struct timeval	t;
 
 	gettimeofday(&t, NULL);
