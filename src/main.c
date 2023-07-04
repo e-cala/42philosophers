@@ -7,7 +7,7 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		err(ERR_ARGS);
 	init_rules(&rules, argv);
-	print_args(rules);
-	launcher(&rules);
+	if (launcher(&rules))
+		err("There was an error creating the threads");
 	return (0);
 }

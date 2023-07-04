@@ -3,6 +3,7 @@
 void	philo_eats(t_philosopher *philo)
 {
 	t_rules *rules;
+
 	rules = philo->rules;
 	pthread_mutex_lock(&(rules->forks[philo->left_fork_id]));
 	print_action(rules, philo->id, "has taken a fork");
@@ -15,6 +16,7 @@ void	philo_eats(t_philosopher *philo)
 
 	philo->t_last_meal = timestamp();
 	pthread_mutex_unlock(&(rules->meal_check));
+	smart_sleep(rules->time_to_eat, rules);
 	(philo->x_ate)++;
 	pthread_mutex_unlock(&(rules->forks[philo->left_fork_id]));
 	pthread_mutex_unlock(&(rules->forks[philo->right_fork_id]));
@@ -35,6 +37,8 @@ void	*p_thread(void *void_philosopher)
 	while (!(rules->dead))
 	{
 		philo_eats(philo);
+		if (rules->all_ate)
+			break ;
 		print_action(rules, philo->id, "is sleeping");
 		smart_sleep(rules->time_to_sleep, rules);
 		print_action(rules, philo->id, "is thinking");
@@ -46,6 +50,7 @@ void	*p_thread(void *void_philosopher)
 void	exit_launcher(t_rules *rules, t_philosopher *philo)
 {
 	int	i;
+
 	i = -1;
 	while (++i <rules->num_philos)
 		pthread_join(philo[i].thread_id, NULL);
@@ -53,6 +58,34 @@ void	exit_launcher(t_rules *rules, t_philosopher *philo)
 	while (++i < rules->num_philos)
 		pthread_mutex_destroy(&(rules->forks[i]));
 	pthread_mutex_destroy(&(rules->writting));
+}
+
+void	death_checker(t_rules *rules, t_philosopher *philo)
+{
+	int	i;
+
+	while (!(rules->all_ate))
+	{
+		i = -1;
+		while (++i < rules->num_philos && !(rules->dead))
+		{
+			pthread_mutex_lock(&(rules->meal_check));
+			if (time_diff(philo[i].t_last_meal, timestamp()) > rules->time_to_die)
+			{
+				print_action(rules, i, "died");
+				rules->dead = 1;
+			}
+			pthread_mutex_unlock(&(rules->meal_check));
+			usleep(100);
+		}
+			if (rules->dead)
+				break ;
+			i = 0;
+			while (rules->times_must_eat != -1 && rules->num_philos && philo[i].x_ate >= rules->times_must_eat)
+				i++;
+			if (i == rules->num_philos)
+				rules->all_ate = 1;
+	}
 }
 
 int	launcher(t_rules *rules)
@@ -70,6 +103,7 @@ int	launcher(t_rules *rules)
 		phi[i].t_last_meal = timestamp();
 		i++;
 	}
+	death_checker(rules, rules->philosophers);
 	exit_launcher(rules, phi);
 	return (0);
 }

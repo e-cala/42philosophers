@@ -29,6 +29,7 @@ typedef struct s_rules
 	int				time_to_sleep;
 	int				times_must_eat;
 	int				dead;
+	int				all_ate;
 	long long		first_timestamp;
 	pthread_mutex_t	writting;
 	pthread_mutex_t	forks[250];
@@ -37,7 +38,7 @@ typedef struct s_rules
 }					t_rules;
 
 /*		init.c			*/
-void	init_rules(t_rules *rules, char **argv);
+int	init_rules(t_rules *rules, char **argv);
 
 /*		launcher.c		*/
 
@@ -48,6 +49,7 @@ void	err(char *str);
 
 /*		time.c			*/
 long long	timestamp(void);
+long long	time_diff(long long past, long long present);
 void		smart_sleep(long long time, t_rules *rules);
 
 /*		utils.c			*/

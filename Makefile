@@ -9,7 +9,7 @@ OBJS	= 	$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 DEPS	= 	$(addsuffix .d, $(basename $(SRCS)))
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -MMD
+CFLAGS	=	-Wall -Wextra -Werror -MMD -g
 
 RM		=	-rm -rf
 

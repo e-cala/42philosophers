@@ -1,6 +1,6 @@
 #include "../includes/philo.h"
 
-static long long	time_diff(long long past, long long present)
+long long	time_diff(long long past, long long present)
 {
 	return (present - past);
 }
