@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ecabanas <ecabanas@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 11:51:58 by ecabanas          #+#    #+#             */
+/*   Updated: 2023/07/06 11:53:09 by ecabanas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 int	init_mutex(t_rules *rules)
@@ -15,7 +27,6 @@ int	init_mutex(t_rules *rules)
 	if (pthread_mutex_init(&(rules->meal_check), NULL))
 		return (1);
 	return (0);
-
 }
 
 int	init_philosophers(t_rules *rules)
@@ -43,14 +54,15 @@ int	init_rules(t_rules *rules, char **argv)
 	rules->time_to_sleep = ft_atoi(argv[4]);
 	rules->all_ate = 0;
 	rules->dead = 0;
-	if (rules->num_philos < 2 || rules->time_to_die < 0 || rules->time_to_eat < 0 
-	|| rules->time_to_sleep < 0 || rules->num_philos > 250)
+	if (rules->num_philos < 2 || rules->time_to_die < 0 
+		|| rules->time_to_eat < 0 
+		|| rules->time_to_sleep < 0 || rules->num_philos > 250)
 		return (1);
 	if (argv[5])
 	{
 		rules->times_must_eat = ft_atoi(argv[5]);
 		if (rules->times_must_eat <= 0)
-		return (1);
+			return (1);
 	}
 	else
 		rules->times_must_eat = -1;
