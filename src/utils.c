@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ecabanas <ecabanas@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 11:54:11 by ecabanas          #+#    #+#             */
+/*   Updated: 2023/07/06 11:55:55 by ecabanas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 void	print_action(t_rules *rules, int id, char *string)
@@ -5,9 +17,9 @@ void	print_action(t_rules *rules, int id, char *string)
 	pthread_mutex_lock(&(rules->writting));
 	if (!(rules->dead))
 		printf("%lli %i %s\n",
-	 		timestamp() - rules->first_timestamp,
-	 		id + 1,
-	 		string);
+			timestamp() - rules->first_timestamp,
+			id + 1,
+			string);
 	pthread_mutex_unlock(&(rules->writting));
 	return ;
 }
@@ -24,7 +36,7 @@ int	ft_atoi(char *str)
 	int	i;
 	int	res;
 	int	sign;
-	
+
 	if (!str)
 		return (-1);
 	i = 0;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ecabanas <ecabanas@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 11:53:31 by ecabanas          #+#    #+#             */
+/*   Updated: 2023/07/06 11:54:04 by ecabanas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 long long	time_diff(long long past, long long present)
@@ -21,7 +33,7 @@ long long	timestamp(void)
 
 void	smart_sleep(long long time, t_rules *rules)
 {
-	long long i;
+	long long	i;
 
 	i = timestamp();
 	while (!(rules->dead))
