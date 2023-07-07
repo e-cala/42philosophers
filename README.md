@@ -30,6 +30,7 @@ Each philosopher logs the following actions:
 The logged messages are always in sequential order.
 
 ## Sources
+- [Philo visualizer](https://nafuka11.github.io/philosophers-visualizer/)
 - [Video - Thread Tutorial](https://www.youtube.com/watch?v=ldJ8WGZVXZk&t=374s&ab_channel=PortfolioCourses)
 - [Video - Mutex Tutorial](https://www.youtube.com/watch?v=raLCgPK-Igc&ab_channel=PortfolioCourses)
 - [The Dining Philosopher's Problem](https://medium.com/swlh/the-dining-philosophers-problem-bbdb92e6b788)
